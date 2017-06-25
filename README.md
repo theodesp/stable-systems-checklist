@@ -96,8 +96,12 @@ Below is an opinionated list of attributes and policies that need to be met in o
 - [ ] If you enable ad-hoc query and tracing on the system and then disable it again, there must no segfaults, no kernel crashes and no long-term impact.
 
 ## Tools
-- [ ] Dtrace
-- [ ] Gdb
+### Debugging
+* Dtrace
+* Gdb
+
+### Cloud Storage
+* [minio](https://minio.io/)
 
 ## Security
 ### Database
@@ -137,12 +141,42 @@ Below is an opinionated list of attributes and policies that need to be met in o
 - [ ] Use canary checks in APIs to detect illegal or abnormal requests that indicate attacks.
 
 ### Validation and Encoding
+- [ ] Do client-side input validation.
+- [ ] Escape text before showing.
 
 ### Cloud Configuration
+- [ ] Ensure all services have minimum ports open.
+- [ ] Host backend database and services on private VPCs that are not visible on any public network.
+- [ ] Isolate logical services in separate VPCs and peer VPCs to provide inter-service communication.
+- [ ] Ensure all services only accept data from a minimal set of IP addresses.
+- [ ] Restrict outgoing IP and port traffic to minimize APTs and “botification”.
+- [ ] No root credentials.
+- [ ] Use minimal access privilege for all ops and developer staff.
+- [ ] Regularly rotate passwords and access keys according to a schedule.
+
+### Infrastructure
+- [ ] Ensure you can do upgrades without downtime. Automated.
+- [ ] Create all infrastructure using a tool such as Terraform, and not via the cloud console. Have zero tolerance for any resource created in the cloud by hand.
+- [ ] Use centralized logging for all services. You should never need SSH to access or retrieve logs.
+- [ ] Don’t SSH into services except for one-off diagnosis. Using SSH regularly, typically means you have not automated an important task.
+- [ ]  Don’t keep port 22 open on any AWS service groups on a permanent basis. If you must use SSH, only use public key authentication and not passwords.
+- [ ] Create immutable hosts instead of long-lived servers that you patch and upgrade.
+- [ ] Protect infrastructure secrets with Centralized secret management tools like Vault or Keywhiz.
 
 ### Operation
+- [ ] Power off unused services and servers.
+- [ ] Have a practiced security incident plan.
 
 ### Test
+- [ ] Do Penetration Testing.
+- [ ] Do fuzz testing.
+- [ ] Everything is Auditable.
+
+### Security tools
+#### Auditing
+* [auditd](https://linux.die.net/man/8/auditd)
+### Encryption
+* [Keyczar](https://github.com/google/keyczar)
 
 ## References
 * [12 Factor app](https://12factor.net/)
