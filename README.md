@@ -22,6 +22,18 @@ Below is an opinionated list of attributes and policies that need to be met in o
 ## System Planning
 - [ ] The system is built for production.
 - [ ] You build your system as a 12 factor app.
+    - [ ] Use revision control with many deploys.
+    - [ ] Declare dependancies with package managers.
+    - [ ] Store configuration in the environment.
+    - [ ] Track backend services as resources.
+    - [ ] Use seperate build, and run stages.
+    - [ ] Execute the app as one or more stateless processes.
+    - [ ] Export services via port binding.
+    - [ ] Scale out via the process model. Never daemonize or write PID files. Use process managers.
+    - [ ] Processes shut down gracefully when they receive a SIGTERM. They have a fast startup and graceful shutdown.
+    - [ ] Keep development, staging, and production as similar as possible. Vagrant allow developers to run local environments.
+    - [ ] Treat logs as event streams.
+    - [ ] Run admin/management tasks as one-off processes. For example django manage.py commands.
 - [ ] The system is a set of modules with loose coupling.
 - [ ] Modules communicate loosely via a protocol.
 - [ ] Design protocols for future extension. Design each module for independence. Design each module so it could be ripped out and placed in another system and still work.
