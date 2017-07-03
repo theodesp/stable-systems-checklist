@@ -21,6 +21,7 @@ Below is an opinionated list of attributes and policies that need to be met in o
 
 ## System Planning
 - [ ] The system is built for production.
+- [ ] Design a shared-nothing architecture.
 - [ ] You build your system as a 12 factor app.
     - [ ] Use revision control with many deploys.
     - [ ] Declare dependancies with package managers.
@@ -44,6 +45,9 @@ Below is an opinionated list of attributes and policies that need to be met in o
 - [ ] Uses a unique ID on all messages which means you can always retry said message in case of a timeout and be sure it won’t be rerun by the receiving system, if the receiver keeps a log of what it has already done.
 - [ ] UNIX principle: each tool does one thing well.
 - [ ] Define the capacity of the system up front.
+- [ ] Decouple your SLA.
+- [ ] Put limits into other application-level protocols. HTTP, RPC, etc.
+
 
 ## Setup
 - [ ] First you build an empty project.
@@ -70,9 +74,11 @@ Below is an opinionated list of attributes and policies that need to be met in o
 - [ ] Ship metrics to a central point for further analysis.
 - [ ] Unit test, property based test, type systems, static analysis, and profiling.
 - [ ] No vendor lock-in.
+- [ ] Use proven synchronization primitives.
 - [ ] No code formatting disputes.
 - [ ] Use load regulation in the border of the system.
 - [ ] Use circuit breakers to break cascading dependency failure.
+- [ ] Try to utilize Soft/Weak references in order to minimize memory footprint.
 
 ## Picking a database
 - [ ] Pick postgresql as default.If you need MongoDB-like functionality you create a jsonb column.
@@ -126,6 +132,9 @@ Below is an opinionated list of attributes and policies that need to be met in o
 
 ### Development
 - [ ] Use vulnerability scanners for every version pushed to production.
+- [ ] Use memory leak analyzers to your to your production runtime binaries.
+- [ ] Use race condition detection in your runtime binaries.
+- [ ] Acquire and investigate any vendor libraries for surprises and failure modes.
 
 ### Authentication
 - [ ] Ensure all passwords are hashed using appropriate crypto such as bcrypt. Use secure random bytes.
@@ -137,6 +146,8 @@ Below is an opinionated list of attributes and policies that need to be met in o
 - [ ] Use CAPTCHA in front end.
 - [ ] Enforce sanity limits on the size and structure of user submitted data and requests.
 - [ ] Use a global caching proxy service like CloudFlare.
+- [ ] No single points of failure. Have redundancy on machines.
+- [ ] Use Bulkhead server partitioning. In essense assign limited resources to specific (groups of) clients, applications, operations, client endpoints, and so on.
 
 ### Web Traffic
 - [ ] Use the strict-transport-security header to force HTTPS on all requests.
@@ -146,6 +157,8 @@ Below is an opinionated list of attributes and policies that need to be met in o
 - [ ] Use X-Frame-Option, X-XSS-Protection headers in client responses.
 - [ ] Use CSRF tokens in all forms.
 - [ ] Use the new SameSite Cookie response header which fixes CSRF once and for all newer browsers.
+- [ ] Keep as little in the session state as possible.
+- [ ] Use a robots.txt file to keep legitimate bots away.
 
 ### APIs
 - [ ] No resources are enumerable in your public API.
@@ -183,6 +196,8 @@ Below is an opinionated list of attributes and policies that need to be met in o
 - [ ] Do Penetration Testing.
 - [ ] Do fuzz testing.
 - [ ] Everything is Auditable.
+- [ ] Identify whatever your most expensive transactions are, and double or triple the proportion of those transactions to see how your system handles stress.
+- [ ] Do Stress Tests.
 
 ### Security tools
 #### Auditing
