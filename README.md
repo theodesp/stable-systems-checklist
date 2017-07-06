@@ -48,7 +48,6 @@ Below is an opinionated list of attributes and policies that need to be met in o
 - [ ] Decouple your SLA.
 - [ ] Put limits into other application-level protocols. HTTP, RPC, etc.
 
-
 ## Setup
 - [ ] First you build an empty project.
 - [ ] Add this empty project to continuous integration.
@@ -95,6 +94,10 @@ Below is an opinionated list of attributes and policies that need to be met in o
 - [ ] Know the weaknesses of a language.
 - [ ] The deployment tooling must be in place before use.
 - [ ] Use make. Use the same make targets for all projects in the organization.
+
+## Picking Architecture
+- [ ] Use REST.
+- [ ] Use REST Specifications like OpenApi, RAML.
 
 ## Configuration
 - [ ] Secure defaults.
