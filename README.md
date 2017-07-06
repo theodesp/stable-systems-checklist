@@ -77,7 +77,10 @@ Below is an opinionated list of attributes and policies that need to be met in o
 - [ ] Use proven synchronization primitives.
 - [ ] No code formatting disputes.
 - [ ] Use load regulation in the border of the system.
+- [ ] Use a retry policy for failed requests. Consider delayed retries with exp back off.
+- [ ] Use a timeout policy for slow requests.
 - [ ] Use circuit breakers to break cascading dependency failure.
+- [ ] Use Bulkheads to partition systems. Protect critical clients by giving them their own pool to call. Virtual servers provide an excellent mechanism for implementing bulkheads. For smaller scale Bind process to CPU.
 - [ ] Try to utilize Soft/Weak references in order to minimize memory footprint.
 
 ## Picking a database
@@ -108,6 +111,7 @@ Below is an opinionated list of attributes and policies that need to be met in o
 - [ ] The system runs out of monit, supervise, upstart, systemd, rcNG, SMF, or the like.
 - [ ] The application must gracefully stop and start if given the command to do so.
 - [ ] Every log file is shipped and indexed outside of the system. Every interesting metric too.
+- [ ] Don’t leave log files on production systems. Copy them to a staging area for analysis.
 - [ ] The only way to make changes to a production host is to redeploy.
 - [ ] Make it easy to roll back and downgrade a deployment.
 - [ ] In a production system you must be able to query its state in an ad-hoc fashion.
