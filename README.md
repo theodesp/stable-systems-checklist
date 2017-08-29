@@ -120,6 +120,13 @@ Below is an opinionated list of attributes and policies that need to be met in o
 - [ ] In a production system you must be able to query its state in an ad-hoc fashion.
 - [ ] If you enable ad-hoc query and tracing on the system and then disable it again, there must no segfaults, no kernel crashes and no long-term impact.
 
+## Site Reliability
+- [ ] Hire Coders only.
+- [ ] Have an SLA for your service.
+- [ ] Measure performance based on your SLA.
+- [ ] Share 5% Operations work with developers.
+- [ ] Do Postmortems after each event and focus only on processes not people.
+
 ## Tools
 ### Debugging
 * Dtrace
